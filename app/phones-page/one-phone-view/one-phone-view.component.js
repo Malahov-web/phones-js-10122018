@@ -1,45 +1,41 @@
-import { BaseComponent } from '../../common/components/base/base.component.js';
+import {BaseComponent} from '../../common/components/base/base.component.js';
 
-export class OnePhoneViewComponent extends BaseComponent{
+export class OnePhoneViewComponent extends BaseComponent {
 
-  show(phone) {
-    this._phone = phone;
-    this._render();
-    super.show();
-  }
+    show(phone) {
+        this._phone = phone;
+        this._render();
+        super.show();
+    }
 
-  _render() {
-    this._element.innerHTML = `
-       <img class="phone" src="assets/img/phones/motorola-xoom-with-wi-fi.0.jpg">
+    _render_parts() {
 
-    <button>Back</button>
-    <button>Add to basket</button>
+        this._render_battery = " ... ";
+    }
+
+    _render() {
+        this._element.innerHTML = `
+        <img class="phone" src="assets/img/phones/motorola-xoom-with-wi-fi.0.jpg">
+
+        <button>Back</button>
+        <button>Add to basket</button>
 
 
-    <h1>Motorola XOOM™ with Wi-Fi</h1>
+        <!--<h1>Motorola XOOM™ with Wi-Fi</h1>-->
+        <h1>` + this._phone.id + `</h1>
+        
+        <p>` + this._phone.description + `</p>
 
-    <p>Motorola XOOM with Wi-Fi has a super-powerful dual-core processor and Android™ 3.0 (Honeycomb) — the Android platform designed specifically for tablets. With its 10.1-inch HD widescreen display, you’ll enjoy HD video in a thin, light, powerful and upgradeable tablet.</p>
+        <ul class="phone-thumbs">
 
-    <ul class="phone-thumbs">
-      <li>
-        <img src="assets/img/phones/motorola-xoom-with-wi-fi.0.jpg">
-      </li>
-      <li>
-        <img src="assets/img/phones/motorola-xoom-with-wi-fi.1.jpg">
-      </li>
-      <li>
-        <img src="assets/img/phones/motorola-xoom-with-wi-fi.2.jpg">
-      </li>
-      <li>
-        <img src="assets/img/phones/motorola-xoom-with-wi-fi.3.jpg">
-      </li>
-      <li>
-        <img src="assets/img/phones/motorola-xoom-with-wi-fi.4.jpg">
-      </li>
-      <li>
-        <img src="img/phones/motorola-xoom-with-wi-fi.5.jpg">
-      </li>
-    </ul>
+            ${this._phone.images.reduce((html, image) => {
+                return `${html}     
+                <li class="thumbnail" data-id=${image}>
+                <img src="assets/${image}">
+                </li>`
+            }, '')}
+
+        </ul>
 
     <ul class="specs">
       <li>
@@ -52,12 +48,29 @@ export class OnePhoneViewComponent extends BaseComponent{
       <li>
         <span>Battery</span>
         <dl>
-          <dt>Type</dt>
+        
+            ${for (let i = 0; i < this._phone.battery.length ; i++) {
+                `
+                <dt>Talk Time</dt>
+                <dd>${this._phone.battery[i]} </dd>
+                `
+            }
+            }
+            
+            ${this._phone.battery.reduce((html, battery) => {
+        return `${html} 
+              <dt>${battery}</dt>
+              <dd>${battery}</dd>    
+              `
+        }, '')}    
+
+        
+<!--          <dt>Type</dt>
           <dd>Other ( mAH)</dd>
           <dt>Talk Time</dt>
           <dd>24 hours</dd>
           <dt>Standby time (max)</dt>
-          <dd>336 hours</dd>
+          <dd>336 hours</dd>-->
         </dl>
       </li>
       <li>
@@ -145,5 +158,6 @@ export class OnePhoneViewComponent extends BaseComponent{
       </li>
     </ul>
     `
-  }
+    }
 }
+

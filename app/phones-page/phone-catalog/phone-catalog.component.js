@@ -33,7 +33,7 @@ export class PhonesCatalogComponent extends BaseComponent {
           <a href="#!/phones/${phone.id}">${phone.name}</a>
           <p>${phone.snippet}</p>
         </li>`
-    }, '')}
+    }, '') }
    
       </ul>
     `
