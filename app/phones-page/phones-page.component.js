@@ -57,10 +57,10 @@ export class PhonesPageComponent {
 
     <!--Main content-->
     <div class="col-md-10" >
- <div id="catalog"></div>
- <div id="item"></div>
-
+      <div id="catalog"></div>
+      <div id="item"></div>
     </div>
+    
   </div>`;
   }
 }
