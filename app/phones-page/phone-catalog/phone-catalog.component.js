@@ -6,10 +6,10 @@ export class PhonesCatalogComponent extends BaseComponent {
     this.phones = phones;
     this.onPhoneSelect = onPhoneSelect;
     this._render();
-    this._element.addEventListener('click', this._goToPhonePage.bind(this))
+    this._element.addEventListener('click', this._gotoOnePhoneView.bind(this))
   }
 
-  _goToPhonePage({ target }) {
+  _gotoOnePhoneView({ target }) {
     const liElement = target.closest('.thumbnail');
     if (!liElement) {
       return;

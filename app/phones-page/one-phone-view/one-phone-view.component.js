@@ -2,6 +2,13 @@ import {BaseComponent} from '../../common/components/base/base.component.js';
 
 export class OnePhoneViewComponent extends BaseComponent {
 
+    constructor({element, onBackToCatalog}){
+        super({ element });
+
+        this.onBackToCatalog = onBackToCatalog;
+        this._element.addEventListener('click', this._gotoCatalog.bind(this))
+    }
+
     show(phone) {
         this._phone = phone;
         this._render();
@@ -13,6 +20,14 @@ export class OnePhoneViewComponent extends BaseComponent {
     //
     //     this._render_battery = " ... ";
     // }
+
+    _gotoCatalog({ target }) {
+        const buttonBack = target.closest('#back');
+        if (!buttonBack) {
+            return;
+        }
+        this.onBackToCatalog(buttonBack.dataset.id);
+    }
 
     _gallery(rootEl) {
 
@@ -41,7 +56,7 @@ export class OnePhoneViewComponent extends BaseComponent {
         this._element.innerHTML = `
         <img class="phone" src="assets/${this._phone.images[0]}">
 
-        <button>Back</button>
+        <button id="back">Back</button>
         <button>Add to basket</button>
 
         <h1>` + this._phone.id + `</h1>

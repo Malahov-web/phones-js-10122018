@@ -7,8 +7,15 @@ export class PhonesPageComponent {
     this.element = element;
     this._render();
 
-    this._phoneService = new PhonesPageService();
+    this._initPhoneService();
 
+    this._initCatalog();
+
+    this._initOnePhoneView();
+
+  }
+
+  _initCatalog() {
     this._phoneCatalog = new PhonesCatalogComponent({
       element: this.element.querySelector('#catalog'),
       phones: this._phoneService.getAllPhones(),
@@ -18,11 +25,20 @@ export class PhonesPageComponent {
         this._phoneViewer.show(phoneDetails);
       }
     });
+  }
 
+  _initOnePhoneView() {
     this._phoneViewer = new OnePhoneViewComponent({
       element: this.element.querySelector('#item'),
+      onBackToCatalog: ()=>{
+        this._phoneCatalog.show();
+        this._phoneViewer.hide();
+      }
     });
+  }
 
+  _initPhoneService() {
+    this._phoneService = new PhonesPageService();
   }
 
   _render() {
