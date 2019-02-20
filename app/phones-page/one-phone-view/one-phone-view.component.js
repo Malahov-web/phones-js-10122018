@@ -15,12 +15,6 @@ export class OnePhoneViewComponent extends BaseComponent {
         super.show();
         this._gallery( document.querySelector('#item') );
     }
-
-    // _render_parts() {
-    //
-    //     this._render_battery = " ... ";
-    // }
-
     _gotoCatalog({ target }) {
         const buttonBack = target.closest('#back');
         if (!buttonBack) {

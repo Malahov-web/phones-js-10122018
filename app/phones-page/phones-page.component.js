@@ -23,14 +23,11 @@ export class PhonesPageComponent {
             element: this.element.querySelector('#catalog'),
             phones: this._phoneService.getAllPhones(),
             onPhoneSelect: (phoneId) => {
-                // console.log(phoneId); // Р.: это описение, а не вызов. ..откуда оно здесь??
                 const phoneDetails = this._phoneService.getPhonesById(phoneId);
                 this._phoneCatalog.hide();
                 this._phoneViewer.show(phoneDetails);
             },
             onAddToCart: (phoneId) => {
-
-                // console.log('onAddToCart ' +  phoneId);
                 this._cart.add(phoneId);
             }
         });
@@ -53,16 +50,9 @@ export class PhonesPageComponent {
     _initCart() {
         this._cart = new CartComponent({
             element: this.element.querySelector('#cart'),
-            onRemoveFromCart: (phoneId)=>{
-                // console.log(phoneId);
+            onRemoveFromCart: (phoneId) => {
                 this._cart.remove(phoneId);
             }
-
-            // onAddToCart: (phoneId)=>{
-            //     // console.log(phoneId);
-            //     this._cart.addToCart(phoneId);
-            // }
-
         });
     }
 
@@ -100,17 +90,3 @@ export class PhonesPageComponent {
     }
 }
 
-/*
-Как работает каталог:
-
-    import PhonesCatalogComponent
-    инициализируем _initCatalog()
-    создается объект new PhonesCatalogComponent,
-    в св-во объекта onPhoneSelect - записывается функция (phoneId)=>{} - показывающая страницу OnePhoneView
-    в классе каталога обрабатываем событие addEventListener, на _element (кот-й наследуется от Base)
-    _gotoOnePhoneView - вызыв-ся addEventListener, и запускает св-во onPhoneSelect
-    this.onPhoneSelect - выполянет передаваемую в него ф-ю (в _initCatalog) и
-    show/hide - показывает и скрывает нужные элементы
-
-
-*/
