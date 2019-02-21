@@ -42,7 +42,7 @@ export class CartComponent extends BaseComponent {
         this._element.innerHTML = `
             <p>Shopping Cart</p>
             <ul>
-                ${phonesInCartTemplate}
+              ${phonesInCartTemplate}
             </ul>        
         `;
     }
