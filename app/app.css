@@ -105,3 +105,19 @@ ul.specs dt {
 h1 {
   border-bottom: 1px solid gray;
 }
+
+a>img:hover{
+  opacity: 0.85;
+}
+
+#cart li:hover{
+  opacity: 0.85;
+}
+.remove{
+  margin-left: 1em;
+}
+.remove:hover{
+  cursor: pointer;
+  /*opacity: 0.85;*/
+  color: #DA5F5F;
+}
